@@ -1,3 +1,30 @@
+.animate {
+    animation: slide-up 1s ease-out;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(50%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.container, .banner, .bio-header, .social-icons, #progress-bar-container {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.container.animate, .banner.animate, .bio-header.animate, .social-icons.animate, #progress-bar-container.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
 body {
     margin: 0;
     padding: 0;
@@ -8,6 +35,39 @@ body {
     height: 100vh;
     background: #f5f5f5;
     color: white;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+    transition: opacity 0.5s ease;
+    backdrop-filter: blur(10px);
+}
+
+.overlay-content {
+    text-align: center;
+}
+
+.overlay h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.overlay p {
+    font-size: 1rem;
+}
+
+body.hidden {
+    overflow: hidden; 
 }
 
 .background {
@@ -39,8 +99,7 @@ body {
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: center; 
-    
+    align-items: center;
 }
 
 .bio-header {
@@ -86,6 +145,46 @@ body {
     height: auto;
     margin: 0 10px;
 }
+
+#language-select {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+}
+
+#progress-bar-container {
+    margin: 20px auto; 
+    width: 80%;
+    background-color: #444;
+    border-radius: 5px;
+    position: relative;
+    height: 25px;
+    border: 1px solid #ffffff;
+    display: none;
+}
+
+#progress-bar {
+    background-color: #f00; 
+    height: 100%;
+    width: 0%;
+    border-radius: 5px;
+    transition: width 0.5s;
+}
+
+#progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+}
+
+
 footer {
     position: fixed;
     bottom: 0;
@@ -105,4 +204,150 @@ footer a {
 
 footer a:hover {
     font-size: 15px;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    .banner {
+        height: 60px;
+        margin-bottom: 15px; /* Tạo thêm khoảng cách giữa banner và các phần tử khác */
+    }
+
+    .bio-header .logo {
+        width: 80px; /* Thu nhỏ logo */
+        margin-top: 50px; /* Tạo thêm khoảng cách trên logo */
+    }
+
+    .bio-header h1 {
+        font-size: 16px; /* Giảm kích thước chữ */
+        margin-bottom: 10px; /* Tạo khoảng cách dưới */
+    }
+
+    .social-icons {
+        margin-top: 30px; /* Tạo khoảng cách trên */
+        margin-bottom: 10px; /* Tạo khoảng cách dưới */
+    }
+
+    .social-icons a {
+        margin: 0 5px;
+        font-size: 16px; /* Giảm kích thước chữ cho icon */
+    }
+
+    .about-me, .favorite-music, .programming-languages, .ide-tools {
+        margin: 15px 0; /* Tạo thêm khoảng cách giữa các phần tử */
+    }
+
+    #language-select {
+        width: 100%;
+        padding: 5px;
+        font-size: 12px;
+        margin-bottom: 10px; /* Tạo thêm khoảng cách dưới */
+    }
+
+    #progress-bar-container {
+        width: 100%;
+        height: 20px;
+        margin-top: 10px; /* Tạo thêm khoảng cách trên */
+    }
+
+    #progress-bar {
+        height: 100%;
+    }
+
+    #progress-text {
+        font-size: 10px;
+    }
+
+    footer {
+        font-size: 10px;
+        padding: 10px;
+        margin-top: 10px; /* Tạo thêm khoảng cách trên footer */
+    }
+
+    footer a {
+        font-size: 11px;
+    }
+}
+
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .bio-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bio-header .logo {
+        margin-bottom: 20px; /* Tạo thêm khoảng cách dưới logo */
+    }
+
+    .social-icons {
+        margin-top: 5px; /* Tạo thêm khoảng cách trên icon */
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .container {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .banner {
+        height: 80px;
+    }
+
+    .bio-header .logo {
+        width: 120px;
+        margin-top: 100px;
+    }
+
+    .bio-header h1 {
+        font-size: 20px;
+    }
+
+    .social-icons {
+        margin-top: 60px;
+    }
+
+    .social-icons a {
+        margin: 0 8px;
+        font-size: 20px;
+    }
+
+    .about-me, .favorite-music, .programming-languages, .ide-tools {
+        margin: 15px 0;
+    }
+
+    #language-select {
+        width: 90%;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    #progress-bar-container {
+        width: 90%;
+        height: 20px;
+    }
+
+    #progress-bar {
+        height: 100%;
+    }
+
+    #progress-text {
+        font-size: 12px;
+    }
+
+    footer {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    footer a {
+        font-size: 13px;
+    }
 }
