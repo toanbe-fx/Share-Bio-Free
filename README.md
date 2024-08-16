@@ -14,6 +14,6 @@
 ## Support & Feedback
 👍 I hope you'll support my work by using these templates and sharing them with others. Please leave a star ⭐ on the repo if you find it useful, and feel free to leave feedback!
 
-MY WEBSITE BIO: [ToanBeDev](http://toanbe,is-a.dev) WHENN I SHOW THE NEWEST BIO IN THIS WEBSITE, YOU CAN TAKE NEW CODE BIO IN THIS GITHUB, BUT IT CAN FREE OR PAY TO USE.
+MY WEBSITE BIO: [ToanBeDev](http://toanbe.is-a.dev) WHENN I SHOW THE NEWEST BIO IN THIS WEBSITE, YOU CAN TAKE NEW CODE BIO IN THIS GITHUB, BUT IT CAN FREE OR PAY TO USE.
 
 Enjoy and have fun!
