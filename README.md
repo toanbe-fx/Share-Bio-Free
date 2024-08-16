@@ -8,6 +8,7 @@
 
 ## Update
 ✅ #1: Update interface with better look and swipe animation!
+
     #2: Update the mobile interface and effects of leaves, falling snow, and seasonal changes!
 
 ## Support & Feedback
