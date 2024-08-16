@@ -1,10 +1,13 @@
-.animate {
-    animation: slide-up 1s ease-out;
+.container {
+    display: none;
 }
 
-@keyframes slide-up {
+.animate {
+    animation: slideUp 0.5s ease-out forwards;
+}
+@keyframes slideUp {
     from {
-        transform: translateY(50%);
+        transform: translateY(100%);
         opacity: 0;
     }
     to {
@@ -12,31 +15,69 @@
         opacity: 1;
     }
 }
-
-.container, .banner, .bio-header, .social-icons, #progress-bar-container {
-    opacity: 0;
-    transform: translateY(100%);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+.season {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
 }
 
-.container.animate, .banner.animate, .bio-header.animate, .social-icons.animate, #progress-bar-container.animate {
-    opacity: 1;
-    transform: translateY(0);
+.snowflake, .leaf, .blossom, .redleaf {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    opacity: 0.8;
 }
 
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #f5f5f5;
-    color: white;
+.snowflake {
+    background: #fff;
+    border-radius: 50%;
+    width: 10px; 
+    height: 10px;
+    animation: snowfall linear infinite;
 }
 
+.leaf, .redleaf {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20px; 
+    width: 20px;
+    animation: leafFall linear infinite;
+}
+
+.blossom {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20px; 
+    height: 20px;
+    animation: leafFall linear infinite;
+}
+
+@keyframes snowfall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+@keyframes leafFall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+@media (max-width: 480px) {
+    .season .snowflake,
+    .season .leaf,
+    .season .blossom,
+    .season .redleaf {
+        width: 15px; 
+        height: 15px;
+    }
+}
 .overlay {
     position: fixed;
     top: 0;
@@ -48,13 +89,29 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; 
-    transition: opacity 0.5s ease;
+    z-index: 1000;
     backdrop-filter: blur(10px);
+    transition: opacity 0.5s ease;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f5f5f5;
+    color: white;
+    font-family: 'Arial', sans-serif;
 }
 
 .overlay-content {
     text-align: center;
+}
+
+html, body {
+    overflow: hidden;
 }
 
 .overlay h1 {
@@ -67,7 +124,7 @@ body {
 }
 
 body.hidden {
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .background {
@@ -93,7 +150,7 @@ body.hidden {
 
 .banner {
     background-image: url('img/banner.png');
-    height: 100px; 
+    height: 100px;
     border-radius: 10px 10px 0 0;
     margin-bottom: 20px;
     position: relative;
@@ -157,7 +214,7 @@ body.hidden {
 }
 
 #progress-bar-container {
-    margin: 20px auto; 
+    margin: 20px auto;
     width: 80%;
     background-color: #444;
     border-radius: 5px;
@@ -168,7 +225,7 @@ body.hidden {
 }
 
 #progress-bar {
-    background-color: #f00; 
+    background-color: #f00;
     height: 100%;
     width: 0%;
     border-radius: 5px;
@@ -184,139 +241,62 @@ body.hidden {
     font-weight: bold;
 }
 
-
 footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    color: #fff; 
+    color: #fff;
     text-align: center;
     padding: 10px;
     font-size: 14px;
-    z-index: 1000; 
+    z-index: 1000;
 }
 
 footer a {
-    color: rgb(51, 255, 0); 
+    color: rgb(51, 255, 0);
     text-decoration: none;
 }
 
 footer a:hover {
     font-size: 15px;
 }
-
 @media (max-width: 480px) {
     .container {
         padding: 10px;
         max-width: 100%;
+        margin-top: 20px;
+        position: relative;
     }
 
     .banner {
         height: 60px;
-        margin-bottom: 15px; /* Tạo thêm khoảng cách giữa banner và các phần tử khác */
+        margin-bottom: 15px;
+        position: relative;
     }
 
     .bio-header .logo {
-        width: 80px; /* Thu nhỏ logo */
-        margin-top: 50px; /* Tạo thêm khoảng cách trên logo */
+        width: 80px;
+        margin-top: 50px;
     }
 
     .bio-header h1 {
-        font-size: 16px; /* Giảm kích thước chữ */
-        margin-bottom: 10px; /* Tạo khoảng cách dưới */
+        font-size: 16px;
+        margin-bottom: 10px;
     }
 
     .social-icons {
-        margin-top: 30px; /* Tạo khoảng cách trên */
-        margin-bottom: 10px; /* Tạo khoảng cách dưới */
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
     }
 
     .social-icons a {
         margin: 0 5px;
-        font-size: 16px; /* Giảm kích thước chữ cho icon */
-    }
-
-    .about-me, .favorite-music, .programming-languages, .ide-tools {
-        margin: 15px 0; /* Tạo thêm khoảng cách giữa các phần tử */
-    }
-
-    #language-select {
-        width: 100%;
-        padding: 5px;
-        font-size: 12px;
-        margin-bottom: 10px; /* Tạo thêm khoảng cách dưới */
-    }
-
-    #progress-bar-container {
-        width: 100%;
-        height: 20px;
-        margin-top: 10px; /* Tạo thêm khoảng cách trên */
-    }
-
-    #progress-bar {
-        height: 100%;
-    }
-
-    #progress-text {
-        font-size: 10px;
-    }
-
-    footer {
-        font-size: 10px;
-        padding: 10px;
-        margin-top: 10px; /* Tạo thêm khoảng cách trên footer */
-    }
-
-    footer a {
-        font-size: 11px;
-    }
-}
-
-
-
-@media (min-width: 481px) and (max-width: 768px) {
-    .bio-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .bio-header .logo {
-        margin-bottom: 20px; /* Tạo thêm khoảng cách dưới logo */
-    }
-
-    .social-icons {
-        margin-top: 5px; /* Tạo thêm khoảng cách trên icon */
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-    .container {
-        padding: 15px;
-        max-width: 100%;
-    }
-
-    .banner {
-        height: 80px;
-    }
-
-    .bio-header .logo {
-        width: 120px;
-        margin-top: 100px;
-    }
-
-    .bio-header h1 {
-        font-size: 20px;
-    }
-
-    .social-icons {
-        margin-top: 60px;
-    }
-
-    .social-icons a {
-        margin: 0 8px;
-        font-size: 20px;
+        font-size: 16px;
     }
 
     .about-me, .favorite-music, .programming-languages, .ide-tools {
@@ -324,14 +304,16 @@ footer a:hover {
     }
 
     #language-select {
-        width: 90%;
-        padding: 8px;
-        font-size: 14px;
+        width: 100%;
+        padding: 5px;
+        font-size: 12px;
+        margin-bottom: 10px;
     }
 
     #progress-bar-container {
-        width: 90%;
+        width: 100%;
         height: 20px;
+        margin-top: 10px;
     }
 
     #progress-bar {
@@ -339,15 +321,19 @@ footer a:hover {
     }
 
     #progress-text {
-        font-size: 12px;
+        font-size: 10px;
+    }
+
+    .container {
+        padding: 10px;
+        margin-bottom: 60px; 
     }
 
     footer {
         font-size: 12px;
-        padding: 5px;
+        padding: 8px;
     }
-
     footer a {
-        font-size: 13px;
+        font-size: 11px;
     }
 }
